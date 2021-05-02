@@ -1,0 +1,30 @@
+{% extends 'html/bootstrap_base.html' %}
+{% block container %}
+    {%for post in posts %}
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="card-title">{{post.title}}</h5>
+            </div>
+            <div class="card-body">
+                <p class="blog-post-meta text-muted">{{post.date_posted}} by <a href="#">{{post.author}}</a></p>
+
+                <p class="card-text">{{post.content}}</p>
+
+                <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+
+                {% if post.tags %}
+                <div class="d-flex flex-stack item-border-hover py-2 mb-6">
+                    {% for tag in post.tags %}
+                        <span class="badge rounded-pill bg-secondary ms-2">{{tag}}</span>  
+                    {% endfor %}    
+                </div>
+                {% endif %}
+                
+                <a href="#" class="btn btn-success">Copy Link</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock container %}
+
