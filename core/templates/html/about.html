@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - DjangoApp</title>
-</head>
-<body>
-    <h1>Messages</h1>
-    <p><em>This is the body of the about HTML template page.</em></p>
-</body>
-</html>
+{% extends 'html/bootstrap_base.html' %}
+{% block container %}
+    <div class="alert alert-success alert-dismissible fade show mt-3 " role="alert">
+        <h4 class="alert-heading">Message</h4>
+        <p><strong>Perfect !</strong> You got this body of the about HTML template page.</p>
+        <hr>
+        <p class="mb-0">Seems like, it working completely fine.</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endblock container %}
+
+
