@@ -18,11 +18,16 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from blog import views as blogViews
-
+from users import views as userView
 
 urlpatterns = [
     path('admin/' , admin.site.urls),
     path(''  , include('blog.urls'),name='blog'),
-    path('about/' , TemplateView.as_view(template_name="html/about.html"),name='blog-about'),
-]
 
+    path('about/' , TemplateView.as_view(template_name="html/about.html"),name='blog-about'),
+
+    path('register/' , userView.register , name='register'),
+    path('login/'    , userView.login    , name='login'),
+    path('logout/'   , userView.logout   , name='logout'),
+    path('profile/'  , userView.profile  , name='profile'),
+]
