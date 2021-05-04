@@ -3,24 +3,34 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as logoutSession
+
+from users.forms import UserRegisterForm
 
 def register(request):
+
+    form = UserRegisterForm(request.POST or None)
+
     # There will be two types of HTTP requets at register route. 
     # GET & POST requests. 
     # We need to verify and manage both events differently.
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid(): 
+        if form.is_valid():
+            # get the username from form.
             username = form.cleaned_data.get('username')
+
+            # Finally register the user after processing.
+            form.save()
+
+            # Send a flash message to user on front page
             messages.success(
                 request,
-                f'Account created with username {username}!'
+                f'Account register with username {username}! Login now'
             )
-            return redirect('blog-home')
-    else:
-        form = UserCreationForm()
+
+            # Redirected to login page.
+            return redirect('login')
 
     return render(
         request,
@@ -28,11 +38,19 @@ def register(request):
         {'form':form}
     )
 
-def login(request):
-    return HttpResponse('login page')
+# def login(request):
+#     form = UserRegisterForm(request.POST or None)
+
+#     return render(
+#         request,
+#         'html/login.html',
+#         {'form':form}
+#     )
 
 def logout(request):
-    return HttpResponse('logout page')
+    messages.info(request,'You have been logged out.')
+    logoutSession(request)
+    return redirect('login')
 
 @login_required
 def profile(request):
