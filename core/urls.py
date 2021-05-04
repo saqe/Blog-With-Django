@@ -22,7 +22,7 @@ from blog import views as blogViews
 
 urlpatterns = [
     path('admin/' , admin.site.urls),
-    path('blog/'  , include('blog.urls')),
+    path(''  , include('blog.urls'),name='blog'),
     path('about/' , TemplateView.as_view(template_name="html/about.html"),name='blog-about'),
 ]
 
