@@ -1,0 +1,24 @@
+{% extends 'html/bootstrap_base.html' %}
+{% load crispy_forms_tags %}
+{% block container %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom text-center mb-4"> JOIN TODAY</legend>
+                    {{form | crispy}}
+                </fieldset>
+                <div class="text-center m-3">
+                    <button class="btn btn-secondary" type="reset">Clear</button>
+                    <button class="btn btn-success" type="submit">Sign Up</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already have an account ? <a href="{% url 'login'%}" class="ml-2">Sign In</a>
+                </small>
+            </div>
+        </div>
+    </div>
+{% endblock container %}
