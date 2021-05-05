@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'TEMPORARY_CODE')
 DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = [
-    os.environ.get("ALLOWED_HOSTS", '*'),
+    '.herokuapp.com', # Allowed heroku app access
     '127.0.0.1',
     '0.0.0.0',
 ]
