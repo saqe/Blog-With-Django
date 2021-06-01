@@ -5,11 +5,10 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as logoutSession
-
+from django.contrib.auth.forms import UserChangeForm
 from users.forms import UserRegisterForm
 
 def register(request):
-
     form = UserRegisterForm(request.POST or None)
 
     # There will be two types of HTTP requets at register route. 
@@ -38,15 +37,6 @@ def register(request):
         {'form':form}
     )
 
-# def login(request):
-#     form = UserRegisterForm(request.POST or None)
-
-#     return render(
-#         request,
-#         'html/login.html',
-#         {'form':form}
-#     )
-
 def logout(request):
     messages.info(request,'You have been logged out.')
     logoutSession(request)
@@ -54,4 +44,9 @@ def logout(request):
 
 @login_required
 def profile(request):
-    return HttpResponse('profile page')
+    form = UserChangeForm()
+    return render(
+        request,
+        'html/profile.html',
+        {'form':form}
+    )
