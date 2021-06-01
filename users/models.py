@@ -9,8 +9,7 @@ class Profile(models.Model):
 
     country = CountryField()
     city = models.CharField(max_length=25)
-    
-    profile_image = models.ImageField(default='/staticfiles/images/default_profile_image.jpg', upload_to='profile_pic')
+    profile_image = models.ImageField(default='/static/images/default_profile_image.jpg', upload_to='profile_pic')
     
     def __str__(self):
         return f'{self.user.username} Profile'

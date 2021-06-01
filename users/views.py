@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as logoutSession
 from django.contrib.auth.forms import UserChangeForm
-from users.forms import UserRegisterForm
+from users.forms import UserRegisterForm,UserUpdateForm, ProfileUpdateForm
 
 def register(request):
     form = UserRegisterForm(request.POST or None)
@@ -23,10 +23,7 @@ def register(request):
             form.save()
 
             # Send a flash message to user on front page
-            messages.success(
-                request,
-                f'Account register with username {username}! Login now'
-            )
+            messages.success( request, f'Account register with username {username}! Login now' )
 
             # Redirected to login page.
             return redirect('login')
@@ -37,16 +34,38 @@ def register(request):
         {'form':form}
     )
 
-def logout(request):
-    messages.info(request,'You have been logged out.')
-    logoutSession(request)
-    return redirect('login')
+# def logout(request):
+#     messages.info(request,'You have been logged out.')
+#     logoutSession(request)
+#     return redirect('login')
 
 @login_required
 def profile(request):
-    form = UserChangeForm()
-    return render(
-        request,
+    return render(request, 'html/my_profile.html')
+
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        user_form    = UserUpdateForm(
+                request.POST,instance=request.user)
+        profile_form = ProfileUpdateForm(
+                request.POST, request.FILES, instance=request.user.profile)
+
+        # If the data we are getting, both forms are valid, only then save the data of the form
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request,f"Dear {request.user.first_name}, your profile have been successfully updated!")
+            return redirect('profile')
+    else:
+        user_form    = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    return render( 
+        request, 
         'html/profile.html',
-        {'form':form}
+        {
+            'user_form' : user_form,
+            'profile_form' : profile_form,
+        }
     )
