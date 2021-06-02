@@ -1,6 +1,6 @@
 {% extends 'html/bootstrap_base.html' %}
 {% load humanize %}
-{% block container %} 
+{% block container %}
 {%for post in posts %}
 <div class="card mt-3">
   <div class="card-header">
@@ -8,7 +8,7 @@
   </div>
   <div class="card-body">
     <p class="blog-post-meta text-muted">
-      {{post.posted_datetime.date}} by <a href="#">{{post.author}}</a>
+      {{post.posted_datetime.date}} by <a href="{% url 'view-profile' post.author.id%}">{{post.author}}</a>
     </p>
 
     <p class="card-text">{{post.content}}</p>
@@ -23,7 +23,8 @@
       {% endfor %}
     </div>
 
-    <a href="#" class="btn btn-success">Copy Link</a>
+    <a href="{% url 'view-blog-post' post.id%}" class="btn btn-success">View</a>
   </div>
 </div>
-{% endfor %} {% endblock container %}
+{% endfor %}
+{% endblock container %}
