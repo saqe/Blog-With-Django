@@ -22,5 +22,5 @@ class Post(models.Model):
     
     # After creating a post, user will be redirected to that post.
     def get_absolute_url(self):
-        return reverse("post-detail", kwargs={"pk": self.pk})
+        return reverse("view-blog-post", kwargs={"pk": self.pk})
     
