@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from datetime import datetime
-
 class PostTag(models.Model):
     tag = models.CharField(max_length = 30)
 

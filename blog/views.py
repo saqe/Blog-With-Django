@@ -8,14 +8,15 @@ class PostListView(ListView):
 
 # Create your views here.
 def home(request):
-    context={
-        'posts':Post.objects.all(),
-        'title':'HomePage'
-    }
-    for post in Post.objects.filter(published=True)[:1]:
-        for tag in post.tags.all():
-            print(tag)
-    return render(request, 'html/home.html',context=context)
-
-# def about(request):
-#     return render(request, 'blog/about.html',)
+    posts = Post\
+        .objects\
+        .filter(published=True)\
+        .orderby('posted_datetime')[:5]
+        
+    return render(
+        request, 
+        'html/home.html',
+        context={
+            'posts':posts,
+            'title':'HomePage'
+        })
