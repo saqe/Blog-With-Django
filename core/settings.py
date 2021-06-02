@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     
     #Installed Apps
     'crispy_forms',
+    'django.contrib.humanize',
 
     # My Apps
     'blog.apps.BlogConfig',
@@ -65,6 +66,7 @@ MIDDLEWARE = [
 
     # Simplified static file serving.
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'core.urls'
