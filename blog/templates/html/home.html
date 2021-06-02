@@ -11,7 +11,7 @@
       {{post.posted_datetime.date}} by <a href="{% url 'view-profile' post.author.id%}">{{post.author}}</a>
     </p>
 
-    <p class="card-text">{{post.content}}</p>
+    <p class="card-text">{{post.content|truncatewords:50}}</p>
 
     <p class="card-text">
       <small class="text-muted">Last updated {{post.updated_datetime | naturaltime}}</small>
