@@ -3,10 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as logoutSession
 from django.contrib.auth.forms import UserChangeForm
 from users.forms import UserRegisterForm,UserUpdateForm, ProfileUpdateForm
+from .models import User
 
 def register(request):
     form = UserRegisterForm(request.POST or None)
@@ -40,7 +42,7 @@ def register(request):
 #     return redirect('login')
 
 @login_required
-def profile(request):
+def my_profile(request):
     return render(request, 'html/my_profile.html')
 
 @login_required
@@ -63,9 +65,20 @@ def update_profile(request):
 
     return render( 
         request, 
-        'html/profile.html',
+        'html/update_profile.html',
         {
             'user_form' : user_form,
             'profile_form' : profile_form,
         }
+    )
+
+class ProfileDetailView(DetailView):
+    model = User
+    template_name = 'html/view_profile.html'
+
+def view_profile(request,userid):
+    user = User.objects.get(id=userid)
+    return render( 
+        request, 
+        'html/my_profile.html',
     )
