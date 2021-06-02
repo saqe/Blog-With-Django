@@ -24,7 +24,6 @@ def home(request):
 class PostListView(ListView):
     model = Post
     template_name='html/home.html'
-    ordering = ['posted_datetime']
     paginate_by = 10
     context_object_name = 'posts'
     queryset = Post.objects.filter(published=True)

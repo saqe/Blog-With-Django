@@ -17,6 +17,10 @@ class Post(models.Model):
     # (Optional) A single post can have mutliple tags.
     tags = models.ManyToManyField(PostTag,blank=True)
     published = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-posted_datetime']
+        
     def __str__(self):
         return self.title
     
