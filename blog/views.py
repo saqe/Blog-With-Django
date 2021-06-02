@@ -1,11 +1,16 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin)
+
 from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
     UpdateView,
     DeleteView,)
+
 from .models import Post
 
 def home(request):
@@ -41,8 +46,17 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Post
+    template_name='html/post_form.html'
+    fields = ['title','content','tags']
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        return self.request.user == self.get_object().author
 
 class PostDeleteView(DeleteView):
     model = Post
