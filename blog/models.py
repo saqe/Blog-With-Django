@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 class PostTag(models.Model):
     tag = models.CharField(max_length = 30)
 
@@ -19,3 +19,8 @@ class Post(models.Model):
     published = models.BooleanField(default=False)
     def __str__(self):
         return self.title
+    
+    # After creating a post, user will be redirected to that post.
+    def get_absolute_url(self):
+        return reverse("post-detail", kwargs={"pk": self.pk})
+    
