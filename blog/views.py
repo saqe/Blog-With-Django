@@ -12,7 +12,9 @@ def home(request):
         'posts':Post.objects.all(),
         'title':'HomePage'
     }
-    # print()
+    for post in Post.objects.filter(published=True)[:1]:
+        for tag in post.tags.all():
+            print(tag)
     return render(request, 'html/home.html',context=context)
 
 # def about(request):
