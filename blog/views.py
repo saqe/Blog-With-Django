@@ -11,8 +11,8 @@ def home(request):
     posts = Post\
         .objects\
         .filter(published=True)\
-        .orderby('posted_datetime')[:5]
-        
+        .order_by('posted_datetime')[:5]
+
     return render(
         request, 
         'html/home.html',
