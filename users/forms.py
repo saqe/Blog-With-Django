@@ -4,14 +4,19 @@ from django.contrib.auth.forms import UserCreationForm
 from django_countries.fields import CountryField
 from .models import Profile
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    # email = forms.EmailField(required=True)
+    # first_name = forms.CharField()
+    # last_name = forms.CharField()
     
     # Nested namespaces for configuration
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name' ,'email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name' ,'email', 'password1']
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password2']
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
