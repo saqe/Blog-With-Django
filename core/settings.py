@@ -49,10 +49,12 @@ INSTALLED_APPS = [
     #Installed Apps
     'crispy_forms',
     'django.contrib.humanize',
-
+    'rest_framework',
+    
     # My Apps
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'api'
 ]
 
 MIDDLEWARE = [
