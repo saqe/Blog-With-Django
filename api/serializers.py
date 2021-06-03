@@ -1,7 +1,10 @@
-from django.contrib.auth.models import User, Group
+from blog.models import Post
 from rest_framework import serializers
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class BlogSerializer(serializers.ModelSerializer):
+    tags = serializers.SlugRelatedField(many=True,read_only=True,slug_field='tag')
+    author = serializers.SlugRelatedField(read_only=True,slug_field='email')
+    is_published = serializers.BooleanField(read_only=True)
     class Meta:
-        model = User
-        fields = ['url', 'username', 'email']
+        model = Post
+        fields = ('url','title','posted_datetime','updated_datetime','content','author','tags','is_published')

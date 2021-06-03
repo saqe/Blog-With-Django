@@ -1,12 +1,14 @@
 from django.urls import include,path
-from . import views
-
-from django.urls import include, path
 from rest_framework import routers
 
+# Custom Views
+from .views import BlogViewSet
+
+# DRF Router
 router = routers.DefaultRouter()
 
-router.register('users', views.UserViewSet)
+# Registered a route for posts in API.
+router.register('posts', BlogViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
