@@ -33,11 +33,14 @@ class PostListView(ListView):
     context_object_name = 'posts'
     queryset = Post.objects.filter(published=True)
 
+    def post(self,request):
+        Post.object.create()
+
 class PostDetailView(DetailView):
     model = Post
     template_name='html/post.html'
 
-class PostCreateView(LoginRequiredMixin,CreateView):
+class PostCreateView(CreateView,LoginRequiredMixin):
     model = Post
     template_name='html/post_form.html'
     fields = ['title','content','tags']
@@ -46,7 +49,8 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
+
+class PostUpdateView(UpdateView,LoginRequiredMixin,UserPassesTestMixin):
     model = Post
     template_name='html/post_form.html'
     fields = ['title','content','tags']
@@ -58,5 +62,9 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().author
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(DeleteView,LoginRequiredMixin,UserPassesTestMixin):
     model = Post
+
+    # Verify if the user trying to do that is 
+    def test_func(self):
+        return self.request.user == self.get_object().author
