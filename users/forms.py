@@ -19,7 +19,6 @@ class UserRegisterForm(UserCreationForm):
         del self.fields['password2']
 
 class UpdateNameForm(forms.ModelForm):
-    email = forms.EmailField()
     class Meta:
         model = User
         fields = ('first_name', 'last_name')
