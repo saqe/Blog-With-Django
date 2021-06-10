@@ -29,7 +29,7 @@ from blog import views as blogViews
 urlpatterns = [
     path('admin/' , admin.site.urls),
 
-    path('api/'  , include('api.urls'),name='api'),
+    # path('api/'  , include('api.urls'),name='api'),
     
     path(''  , include('blog.urls'),name='blog'),
 
