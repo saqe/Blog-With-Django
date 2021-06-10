@@ -7,7 +7,11 @@ from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as logoutSession
 from django.contrib.auth.forms import UserChangeForm
-from users.forms import UserRegisterForm,UserUpdateForm, ProfileUpdateForm
+from users.forms import (
+    UserRegisterForm,
+    UpdateNameForm,
+    ProfileUpdateForm)
+
 from .models import User
 
 def register(request):
@@ -48,7 +52,7 @@ def my_profile(request):
 @login_required
 def update_profile(request):
     if request.method == 'POST':
-        user_form    = UserUpdateForm(
+        user_form    = UpdateNameForm(
                 request.POST,instance=request.user)
         profile_form = ProfileUpdateForm(
                 request.POST, request.FILES, instance=request.user.profile)
@@ -60,7 +64,7 @@ def update_profile(request):
             messages.success(request,f"Dear {request.user.first_name}, your profile have been successfully updated!")
             return redirect('my-profile')
     else:
-        user_form    = UserUpdateForm(instance=request.user)
+        user_form    = UpdateNameForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     return render( 
