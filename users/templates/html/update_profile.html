@@ -2,22 +2,18 @@
 {% load crispy_forms_tags %}
 {% block container %}
 <div class="row justify-content-center">
-  <div class="col-md-6">
-    <form method="POST" enctype="multipart/form-data">
+  <div class="col-md-6 m-4 card bg-light">
+    <form method="POST" enctype="multipart/form-data" class='m-4'>
+      <h4>Edit Profile</h4>
       {% csrf_token %}
-      
-      <img 
-        src="{{user.profile.profile_image.url}}" 
-        alt="Profile Image" width="150" 
-        class="rounded-circle text-center image-fluid"
-      />
+      <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" />
 
       <fieldset class="form-group">
         {{ user_form | crispy}}
         {{ profile_form | crispy}}
       </fieldset>
       <div class="text-center m-3">
-        <button class="btn btn-success" type="submit">Update</button>
+        <button class="btn btn-success"   type="submit">Update</button>
         <button class="btn btn-secondary" type="reset">Cancle</button>        
       </div>
     </form>

@@ -46,12 +46,21 @@
     <!-- Blog main.container -->
     <main>
       <div class="container">
-        {% if messages %} {% for message in messages %}
-        <div class="alert alert-{{message.tags}} alert-dismissible mt-2">
-          {{message}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %} {% endif %} {% block container %} {% endblock container %}
+        {% if messages %} 
+          {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible mt-2">
+              {{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %} 
+        {% endif %} 
+        
+        {% block container %} 
+          {% comment %} 
+            Bootstrap Container shown here
+          {% endcomment %}
+
+        {% endblock container %}
       </div>
     </main>
 
