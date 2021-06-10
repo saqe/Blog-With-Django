@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from os import getenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if not os.getenv('DEBUG'):
+if getenv('DEBUG') is None:
     from dotenv import load_dotenv
     load_dotenv()
 
@@ -24,11 +26,11 @@ if not os.getenv('DEBUG'):
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'TEMPORARY_CODE')
+SECRET_KEY = getenv("DJANGO_SECRET_KEY","THIS_ISNOT_A_SECURE_TOKEN_THATS_FOR_LOCAL_DEBUG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.environ.get("DEBUG", False)
+DEBUG = getenv("DEBUG", False)
 
 ALLOWED_HOSTS = [
     '.herokuapp.com', # Allowed heroku app access
@@ -45,16 +47,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    #Installed Apps
-    'crispy_forms',
     'django.contrib.humanize',
-    'rest_framework',
-    
+
+    #[Installed Apps]
+    # Crispy-Forms for auto-formating html-form
+    'crispy_forms',
+    # DRF
+    # 'rest_framework',
+    # Django-storages
+    'storages',
+    # PhoneNumberFeild for django model
+    'phonenumber_field',
+
     # My Apps
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
-    'api'
+    # 'api',
 ]
 
 MIDDLEWARE = [
@@ -98,12 +106,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # POSTGRE SQL DATABASE
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME'  : os.getenv('DB_NAME'),
-        'USER'  : os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASS'),
-        'HOST'  : os.getenv('DB_HOST'),
-        'PORT'  : os.getenv('DB_PORT'),
+        'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+        'NAME'     : getenv('DB_NAME'),
+        'USER'     : getenv('DB_USER'),
+        'PASSWORD' : getenv('DB_PASS'),
+        'HOST'     : getenv('DB_HOST'),
+        'PORT'     : getenv('DB_PORT'),
     }
 }
 
@@ -136,17 +144,32 @@ LOGOUT_REDIRECT_URL = 'login'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (BASE_DIR / "static",)
+
+# Extra places for collectstatic to find static files.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # For development-stage media route
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
+
+
+# [DjangoStorages]
+AWS_ACCESS_KEY_ID       = getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY   = getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME      = getenv('AWS_S3_REGION_NAME')
+AWS_S3_ENDPOINT_URL     = getenv('AWS_S3_ENDPOINT_URL')
+#AWS_S3_OBJECT_PARAMETERS= getenv('AWS_S3_OBJECT_PARAMETERS')
+AWS_S3_FILE_OVERWRITE   = False
+AWS_DEFAULT_ACL         = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 
 
