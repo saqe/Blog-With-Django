@@ -76,7 +76,6 @@ MIDDLEWARE = [
 
     # Simplified static file serving.
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'core.urls'
