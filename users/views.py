@@ -81,14 +81,14 @@ def update_profile(request):
         }
     )
 
-class ProfileDetailView(DetailView):
+class PublicProfileDetailView(DetailView):
     model = User
     template_name = 'html/view_public_profile.html'
 
-def view_profile(request,userid):
-    user = User.objects.get(id=userid)
-    return render( 
-        request, 
-        'html/my_profile.html',
-        {'user':user}
-    )
+# def view_p_profile(request,userid):
+#     user = User.objects.get(id=userid)
+#     return render( 
+#         request, 
+#         'html/my_profile.html',
+#         {'user':user}
+#     )
