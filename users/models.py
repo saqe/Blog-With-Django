@@ -8,7 +8,19 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Profile(models.Model):
+
+    class Gender(models.TextChoices):
+        MALE   = 'M'
+        FEMALE = 'F'
+        OTHER  = 'O'
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    gender = models.CharField(
+        max_length=1,
+        choices=Gender.choices,
+        default='M',
+    )
 
     country = CountryField()
 
@@ -19,6 +31,7 @@ class Profile(models.Model):
     zip_code = models.CharField(
                 _("zip code"), 
                 max_length=5,
+                blank=True,
                 null=True)
     
     phone_number = PhoneNumberField(
