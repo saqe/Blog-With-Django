@@ -14,10 +14,13 @@ class Post(models.Model):
     content = models.TextField()
     
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     # (Optional) A single post can have mutliple tags.
     tags = models.ManyToManyField(PostTag,blank=True)
-    published = models.BooleanField(default=False)
 
+    featured  = models.BooleanField(default=False)
+    published = models.BooleanField(default=False)
+    
     class Meta:
         ordering = ['-posted_datetime']
         

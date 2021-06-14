@@ -32,8 +32,8 @@ class PostListView(ListView):
     template_name='html/home.html'
     paginate_by = 10
     context_object_name = 'posts'
-    queryset = Post.objects.filter(published=True)
-
+    queryset = Post.objects.filter(published=True,featured=True)
+    
     def post(self,request):
         Post.object.create()
 
@@ -44,13 +44,12 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView,LoginRequiredMixin):
     model = Post
-    template_name='html/post_form.html'
+    template_name='html/form/create_post.html'
     fields = ['title','content','tags']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
 
 class PostUpdateView(UpdateView,LoginRequiredMixin,UserPassesTestMixin):
     model = Post
