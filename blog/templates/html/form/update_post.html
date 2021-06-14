@@ -1,0 +1,10 @@
+{% extends "html/form/post_form.html" %}
+{% load crispy_forms_tags %}
+{% block "post-form" %}
+<legend class="border-bottom text-center mb-4">Update</legend>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group"> {{form | crispy}}</fieldset>
+    <div class="d-flex justify-content-center m-3"><button class="btn btn-success col-6" type="submit">Update</button></div>
+</form>
+{% endblock "post-form" %}

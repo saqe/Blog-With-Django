@@ -1,0 +1,13 @@
+{% extends 'html/form/post_form' %}
+{% load crispy_forms_tags %}
+{% block "post-form" %}
+<legend class="border-bottom text-center mb-4">Create a post</legend>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group"> {{form | crispy}}</fieldset>
+    <div class="text-center m-3">
+        <button class="btn btn-success"   type="submit">Submit</button>
+        <button class="btn btn-secondary" type="reset"> Clear</button>
+    </div>
+</form>
+{% endblock "post-form" %}
