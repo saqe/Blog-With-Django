@@ -14,11 +14,12 @@
           <div class="form-group col-md-6">{{ user_form.last_name  | as_crispy_field }}</div>
         </div>
 
+        <div class="mt-2">{{ profile_form.gender | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.job_role | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.phone_number | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.country | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.address | as_crispy_field }}</div>
         
-        <div class="mt-2">{{ profile_form.gender  | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.phone_number  | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.country  | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.address  | as_crispy_field }}</div>
 
         <div class="row mt-2">
           <div class="form-group col-md-5">{{ profile_form.city | as_crispy_field }}</div>

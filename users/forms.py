@@ -36,4 +36,4 @@ class ProfileUpdateForm(forms.ModelForm):
     country = CountryField()
     class Meta:
         model = Profile
-        fields = ('gender','phone_number','country','address','state','city','zip_code')
+        fields = ('gender','job_role','phone_number','country','address','state','city','zip_code')

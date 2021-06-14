@@ -9,10 +9,10 @@
           <div class="d-flex flex-column align-items-center text-center">
             <img src="{{object.profile.profile_image.url}}" alt="Profile Image" class="rounded-circle img-fluid text-center" width="150" />
             <div class="mt-3">
-              <h4>{{object.first_name}} {{object.last_name}}</h4>
+              <h4>{{object.full_name}}</h4>
 
-              <p class="text-secondary mb-0">Full Stack Developer</p>
-              <!--<p class="text-muted font-size-sm mb-0">@{{1}}</p>-->
+              <p class="text-secondary mb-0">{{object.job_role}}Full Stack Developer</p>
+
               <p class="text-muted font-size-sm">{{object.profile.country.unicode_flag}} Bay Area, San Francisco, CA</p>
             </div>
           </div>

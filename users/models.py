@@ -22,6 +22,8 @@ class Profile(models.Model):
         default='M',
     )
 
+    job_role = models.CharField(max_length=70,blank=True)
+    
     country = CountryField()
 
     address= models.CharField(max_length=150,blank=True)
