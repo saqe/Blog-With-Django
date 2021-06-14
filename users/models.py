@@ -24,7 +24,7 @@ class Profile(models.Model):
 
     country = CountryField()
 
-    address= models.TextField(blank=True)
+    address= models.CharField(max_length=150,blank=True)
     state= models.CharField(max_length=25,blank=True)
     city = models.CharField(max_length=25,blank=True)
 
