@@ -4,17 +4,21 @@
 <div class="row justify-content-center">
   <div class="col-md-6 m-4 card bg-light">
     <form method="POST" enctype="multipart/form-data" class='m-4'>
-      <h4>Edit Profile</h4>
+      <h4>Basic Information</h4>
       {% csrf_token %}
       <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" />
 
       <fieldset class="form-group">
-        {{ user_form | crispy}}
+        <div class="row mt-4">
+          <div class="form-group col-md-6">{{ user_form.first_name | as_crispy_field }}</div>
+          <div class="form-group col-md-6">{{ user_form.last_name  | as_crispy_field }}</div>
+        </div>
+
         {{ profile_form | crispy}}
       </fieldset>
       <div class="text-center m-3">
         <button class="btn btn-success"   type="submit">Update</button>
-        <button class="btn btn-secondary" type="reset">Cancle</button>        
+        <button class="btn btn-secondary" type="reset" >Cancle</button>        
       </div>
     </form>
   </div>
