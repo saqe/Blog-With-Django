@@ -1,0 +1,14 @@
+{% for post in blog_posts %}
+    <div class="post-preview">
+        <a href="{% url 'view-blog-post' post.id%}" class='text-decoration-none text-dark'>
+            <h2 class="post-title">{{post.title}}</h2>
+            <p class="lead">{{post.content |truncatechars:70}}</p>
+        </a>
+        <em class="post-meta text-muted">
+            Posted by
+            <a href="{% url 'view-profile' post.author.id%}">{{post.author}}</a>
+            on {{post.posted_datetime.date}}
+        </em>
+    </div>
+    <hr class="my-4">
+{% endfor %}
