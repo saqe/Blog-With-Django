@@ -15,12 +15,12 @@
         </div>
 
         
-        {{ profile_form.gender  | as_crispy_field }}
-        {{ profile_form.phone_number  | as_crispy_field }}
-        {{ profile_form.country  | as_crispy_field }}
-        {{ profile_form.address  | as_crispy_field }}
+        <div class="mt-2">{{ profile_form.gender  | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.phone_number  | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.country  | as_crispy_field }}</div>
+        <div class="mt-2">{{ profile_form.address  | as_crispy_field }}</div>
 
-        <div class="row">
+        <div class="row mt-2">
           <div class="form-group col-md-5">{{ profile_form.city | as_crispy_field }}</div>
           <div class="form-group col-md-4">{{ profile_form.state | as_crispy_field }}</div>
           <div class="form-group col-md-3">{{ profile_form.zip_code | as_crispy_field }}</div>
@@ -28,8 +28,7 @@
 
       </fieldset>
       <div class="text-center m-3">
-        <button class="btn btn-success"   type="submit">Update</button>
-        <button class="btn btn-secondary" type="reset" >Cancle</button>        
+        <button class="btn btn-success col-sm-5" type="submit">Save</button>
       </div>
     </form>
   </div>
