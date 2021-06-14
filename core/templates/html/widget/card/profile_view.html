@@ -10,10 +10,10 @@
                 
                 <p class="text-muted font-size-sm">{{user.profile.country.unicode_flag}} Bay Area, San Francisco, CA</p>
                 
-                {% if True %}
+                {% if logged_in %}
                     <a class="btn btn-primary" href="{% url 'update-profile' %}">Edit Profile</a>
                 {% endif %}
-                
+
                 {% comment %} <button class="btn btn-outline-primary">Messages</button> {% endcomment %}
             </div>
         </div>

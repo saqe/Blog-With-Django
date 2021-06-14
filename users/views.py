@@ -47,7 +47,12 @@ def register(request):
 
 @login_required
 def my_profile(request):
-    return render(request, 'html/my_profile.html')
+    return render(
+        request,
+        'html/my_profile.html',
+        {'user':request.user,
+        'logged_in':True}
+    )
 
 @login_required
 def update_profile(request):
@@ -78,11 +83,12 @@ def update_profile(request):
 
 class ProfileDetailView(DetailView):
     model = User
-    template_name = 'html/view_profile.html'
+    template_name = 'html/view_public_profile.html'
 
 def view_profile(request,userid):
     user = User.objects.get(id=userid)
     return render( 
         request, 
         'html/my_profile.html',
+        {'user':user}
     )
