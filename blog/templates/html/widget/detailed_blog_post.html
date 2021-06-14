@@ -1,14 +1,13 @@
 {% load humanize %}
 <article class="blog-post">
     <h1 class="blog-post-title">{{blogpost.title}}</h1>
-    <p class="blog-post-meta meta ">
-      <em> <span class='text-muted'>
+    <p class="blog-post-meta meta">
+      <em class='text-muted'>
         Posted by <a href="{% url 'view-profile' blogpost.author.id%}" class='text-decoration-none'>{{blogpost.author}}</a>
         on {{blogpost.posted_datetime.date}}
-      </span></em>
-        
-        
+      </em>
     </p>
+
     <p class="card-text">{{blogpost.content}}</p>
 
     <p class="card-text">
