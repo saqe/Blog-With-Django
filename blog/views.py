@@ -26,6 +26,7 @@ def home(request):
             'posts':posts,
             'title':'HomePage'
         })
+
 class PostListView(ListView):
     model = Post
     template_name='html/home.html'
@@ -39,6 +40,7 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name='html/post.html'
+    context_object_name = 'blogpost'
 
 class PostCreateView(CreateView,LoginRequiredMixin):
     model = Post

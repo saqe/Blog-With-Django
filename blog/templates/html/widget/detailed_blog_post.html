@@ -1,0 +1,31 @@
+{% load humanize %}
+<article class="blog-post">
+    <h1 class="blog-post-title">{{blogpost.title}}</h1>
+    <p class="blog-post-meta meta ">
+      <em> <span class='text-muted'>
+        Posted by <a href="{% url 'view-profile' blogpost.author.id%}" class='text-decoration-none'>{{blogpost.author}}</a>
+        on {{blogpost.posted_datetime.date}}
+      </span></em>
+        
+        
+    </p>
+    <p class="card-text">{{blogpost.content}}</p>
+
+    <p class="card-text">
+      <small class="text-muted">
+        Last updated {{blogpost.updated_datetime | naturaltime}}
+      </small>
+    </p>
+    
+    <div class="d-flex flex-stack item-border-hover py-2 mb-6">
+      {% for tag in blogpost.tags.all %}
+        <span class="badge rounded-pill bg-secondary ms-2">{{tag}}</span>
+      {% endfor %}
+    </div>
+
+    <style>
+      .blog-post-title {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+      }
+    </style>
+</article>

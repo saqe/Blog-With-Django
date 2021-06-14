@@ -1,26 +1,10 @@
 {% extends 'html/bootstrap_base.html' %}
 {% load humanize %}
 {% block container %} 
-<div class="card mt-3">
-  <div class="card-header">
-    <h5 class="card-title">{{object.title}}</h5>
-  </div>
-  <div class="card-body">
-    <p class="blog-post-meta text-muted">
-      {{post.posted_datetime.date}} by <a href="{% url 'view-profile' object.author.id%}">{{object.author}}</a>
-    </p>
-
-    <p class="card-text">{{object.content}}</p>
-
-    <p class="card-text">
-      <small class="text-muted">Last updated {{object.updated_datetime | naturaltime}}</small>
-    </p>
-    
-    <div class="d-flex flex-stack item-border-hover py-2 mb-6">
-      {% for tag in object.tags.all %}
-        <span class="badge rounded-pill bg-secondary ms-2">{{tag}}</span>
-      {% endfor %}
-    </div>
+<div class="row gx-4 gx-lg-5 justify-content-center">
+  <div class='col-md-10 col-lg-8 col-xl-7 mt-4'>  
+    {% include "html/widget/detailed_blog_post.html" %}
   </div>
 </div>
+
 {% endblock container %}
