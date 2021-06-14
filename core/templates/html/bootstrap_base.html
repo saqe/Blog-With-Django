@@ -14,34 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
   </head>
 
-  <body>
-    <header class="site-header">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container container-fluid">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}"> Django Blog</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a> </li>
-              <li class="nav-item">        <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> </li>
-            </ul>
-
-            <!-- Navbar Right Side -->
-            <ul class="navbar-nav d-flex">
-              {% if user.is_authenticated %}
-                <li class="nav-item"> <a class="nav-item nav-link" href="{% url 'logout' %}">   Logout</a> </li>
-                <li class="nav-item"> <a class="nav-item nav-link" href="{% url 'my-profile' %}">Profile</a> </li>
-              {% else %}
-                <li class="nav-item"><a class="nav-item nav-link" href="{% url 'login' %}">       Login</a></li>
-                <li class="nav-item"><a class="nav-item nav-link" href="{% url 'user-register' %}">Register</a></li>
-              {% endif %}
-            </ul>
-          </div> <!--  div#NavbarToggle ends here -->
-        </div> <!--  div.container ends here -->
-      </nav> <!--  navbar ends here -->
-    </header>
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Header -->
+    {% include "html/widget/header.html" %}
 
     <!-- Blog main.container -->
     <main>
