@@ -39,6 +39,10 @@ urlpatterns = [
     path('login/'    , LoginView.as_view(template_name  = 'html/login.html',redirect_authenticated_user=True), name='login'),
     path('logout/'   , LogoutView.as_view()   , name='logout'),
 
+
+    # User profile setting
+    path('settings/' , include('settings.urls')),
+
     path('profile/'  , include('users.urls'), name='profile'),
 ] 
 

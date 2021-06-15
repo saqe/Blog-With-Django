@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     # My Apps
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    # User profile settings app.
+    'settings.apps.SettingsConfig',
     # 'api',
 ]
 

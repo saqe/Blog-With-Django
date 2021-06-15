@@ -1,37 +1,35 @@
-{% extends 'html/bootstrap_base.html' %}
+{% extends 'html/bootstrap_base_without_container.html' %}
 {% load crispy_forms_tags %}
-{% block container %}
-<div class="row justify-content-center">
-  <div class="col-md-6 m-4 card bg-light">
-    <form method="POST" enctype="multipart/form-data" class='m-4'>
-      <h4>Basic Information</h4>
-      {% csrf_token %}
-      <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" />
+{% block main_block %}
 
+<div class="row">
+  {% include "settings/sidebar/left.html" %}
+
+  {% comment %} <div class="container"> {% endcomment %}
+  <div class="col-sm-5 mx-auto m-4 card bg-light">
+    <h4 class='mt-4'>Basic Information</h4>
+    {% comment %} <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" /> {% endcomment %}
+    <form method="POST" enctype="multipart/form-data" class='m-4 align-self-center'>
+      {% csrf_token %}
       <fieldset class="form-group">
         <div class="row mt-4">
           <div class="form-group col-md-6">{{ user_form.first_name | as_crispy_field }}</div>
           <div class="form-group col-md-6">{{ user_form.last_name  | as_crispy_field }}</div>
         </div>
-
         <div class="mt-2">{{ profile_form.gender | as_crispy_field }}</div>
         <div class="mt-2">{{ profile_form.job_role | as_crispy_field }}</div>
         <div class="mt-2">{{ profile_form.phone_number | as_crispy_field }}</div>
         <div class="mt-2">{{ profile_form.country | as_crispy_field }}</div>
         <div class="mt-2">{{ profile_form.address | as_crispy_field }}</div>
-        
-
         <div class="row mt-2">
           <div class="form-group col-md-5">{{ profile_form.city | as_crispy_field }}</div>
           <div class="form-group col-md-4">{{ profile_form.state | as_crispy_field }}</div>
           <div class="form-group col-md-3">{{ profile_form.zip_code | as_crispy_field }}</div>
         </div>
-
       </fieldset>
-      <div class="text-center m-3">
-        <button class="btn btn-success col-sm-5" type="submit">Save</button>
-      </div>
+      <button class="btn mt-4 btn-success container" type="submit">Save</button>
     </form>
   </div>
+  {% comment %} </div> {% endcomment %}
 </div>
-{% endblock container %}
+{% endblock main_block %}
