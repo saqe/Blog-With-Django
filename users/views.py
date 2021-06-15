@@ -13,6 +13,7 @@ from users.forms import (
     ProfileUpdateForm)
 
 from .models import User
+from blog.models import Post
 
 def register(request):
     form = UserRegisterForm(request.POST or None)
@@ -47,11 +48,15 @@ def register(request):
 
 @login_required
 def my_profile(request):
+    blog_posts = Post.objects.filter(author=request.user.id)
     return render(
         request,
         'html/my_profile.html',
-        {'user':request.user,
-        'logged_in':True}
+        {
+            'user':request.user,
+            'blog_posts':blog_posts,
+            'logged_in':True
+        }
     )
 
 @login_required
@@ -84,6 +89,11 @@ def update_profile(request):
 class PublicProfileDetailView(DetailView):
     model = User
     template_name = 'html/view_public_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["blog_posts"] = Post.objects.filter(author=self.request.user.id)
+        return context
 
 # def view_p_profile(request,userid):
 #     user = User.objects.get(id=userid)
