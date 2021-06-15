@@ -4,11 +4,17 @@
         <div class="d-flex flex-column align-items-center text-center">
             <img src="{{user.profile.profile_image.url}}" alt="Profile Image" class="rounded-circle img-fluid mx-auto d-block" width="150" />
             <div class="mt-3">
-                <h4>{{user.get_full_name}}</h4>
+                <h4>
+                    {{user.get_full_name}}
+                    {% if user.is_staff %}
+                        <i class="bi bi-patch-check-fill text-warning"></i>
+                    {% endif %}
+                </h4>
+                
 
                 <p class="text-secondary mb-0">{{user.profile.job_role}}</p>
                 
-                <p class="text-muted font-size-sm">{{user.profile.country.unicode_flag}} Bay Area, San Francisco, CA</p>
+                <p class="text-muted font-size-sm"><i class="bi bi-geo-alt-fill"></i> Bay Area, San Francisco, CA {{user.profile.country.unicode_flag}}</p>
                 
                 {% if logged_in %}
                     <a class="btn btn-primary" href="{% url 'update-profile' %}"> 
