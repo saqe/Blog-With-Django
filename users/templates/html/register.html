@@ -3,15 +3,31 @@
 {% block container %}
 <div class="row justify-content-center mb-4">
     <div class="col-md-5">
+        <h5 class="text-muted mb-4 text-uppercase">Start for free</h5>
+        <h2 class="text-center display-4 mb-4">Create account</h2>
+
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom text-center mb-4"> JOIN TODAY</legend>
-                {{form| crispy}}
+                
+                <!-- Username -->
+                <div class="mt-2">{{ form.username | as_crispy_field }}</div>
+
+                <div class="row mt-2">
+                    <div class="form-group col-md-6">{{ form.first_name | as_crispy_field }}</div>
+                    <div class="form-group col-md-6">{{ form.last_name  | as_crispy_field }}</div>
+                </div>
+                <!-- Gender -->
+                {% comment %} <div class="mt-2">{{ form.gender | as_crispy_field }}</div> {% endcomment %}
+
+                <div class="mt-2">{{ form.email | as_crispy_field }}</div>
+                <div class="mt-2">{{ form.password1|as_crispy_field }}</div>
             </fieldset>
+
+            
+
             <div class="text-center m-3">
-                <button class="btn btn-success" type="submit">Sign Up</button>
-                <button class="btn btn-secondary" type="reset">Clear</button>
+                <button class="btn btn-primary container" type="submit">Create an account</button>
             </div>
         </form>
         <div class="border-top pt-3">
