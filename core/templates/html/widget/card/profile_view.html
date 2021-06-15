@@ -11,7 +11,14 @@
                 <p class="text-muted font-size-sm">{{user.profile.country.unicode_flag}} Bay Area, San Francisco, CA</p>
                 
                 {% if logged_in %}
-                    <a class="btn btn-primary" href="{% url 'update-profile' %}">Edit Profile</a>
+                    <a class="btn btn-primary" href="{% url 'update-profile' %}"> 
+                        <i class="bi bi-person-circle"></i>
+                        Edit Profile
+                    </a>
+                    <a class="btn btn-success" href="{% url 'create-blog-post' %}">
+                        <i class="bi bi-file-text-fill"></i>
+                        Create Post
+                    </a>
                 {% endif %}
             </div>
         </div>
