@@ -30,7 +30,7 @@ def register(request):
 
     return render(
         request,
-        'html/register.html',
+        'users/register.html',
         {'form':form}
     )
 
@@ -39,7 +39,7 @@ def my_profile(request):
     blog_posts = Post.objects.filter(author=request.user.id)
     return render(
         request,
-        'html/my_profile.html',
+        'user/my_profile.html',
         {
             'user':request.user,
             'blog_posts':blog_posts,
@@ -49,7 +49,7 @@ def my_profile(request):
 
 class PublicProfileDetailView(DetailView):
     model = User
-    template_name = 'html/view_public_profile.html'
+    template_name = 'users/view_public_profile.html'
 
     def dispatch(self, request, *args, **kwargs):
         print(request.user.id , self.request.user.id)
