@@ -1,0 +1,18 @@
+<!-- Modal -->
+<div class="modal fade" id="{{confirm_modal_id}}" tabindex="-1" aria-labelledby="{{confirm_modal_id}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{confirm_modal_id}}Label">Confirmation Required</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-start">
+        {{confirmation_message}}
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-{{confirm_button_color}}">{{confirm_button_text}}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+      </div>
+    </div>
+  </div>
+</div>
