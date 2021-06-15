@@ -1,0 +1,23 @@
+{% extends 'html/bootstrap_base.html' %}
+{% block container %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Post</legend>
+            <h1 class="display-2">{{ object.title}}</h1>
+            <h1 class="display-2">{{ object.title}}</h1>
+            
+            <h2>Are you sure you want to delete this post?</h2>
+        </fieldset>
+
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">
+                <i class="bi bi-trash"></i> 
+                Yes, Delete
+            </button>
+            <a class="btn btn-outline-secondary" href="{% url 'view-blog-post' object.id %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock container %}
