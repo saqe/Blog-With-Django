@@ -7,15 +7,24 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a> </li>
+                <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'blog-home' %}">
+                    <i class="bi bi-house"></i>
+                    Home
+                </a> </li>
                 <li class="nav-item">        <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a> </li>
             </ul>
             
             <!-- Navbar Right Side -->
             <ul class="navbar-nav d-flex">
                 {% if user.is_authenticated %}
-                    <li class="nav-item"> <a class="nav-item nav-link" href="{% url 'logout' %}">   Logout</a> </li>
-                    <li class="nav-item"> <a class="nav-item nav-link" href="{% url 'my-profile' %}">Profile</a> </li>
+                    <li class="nav-item"> <a class="nav-item nav-link" href="{% url 'my-profile' %}">
+                        {% comment %} Profile {% endcomment %}
+                        <i class="bi bi-person-fill"></i>
+                    </a> </li>
+                    <li class="nav-item"><a class="nav-item nav-link" href="{% url 'logout' %}">
+                        Logout
+                        <i class="bi bi-box-arrow-left"></i>
+                    </a> </li>
                 {% else %}
                     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'login' %}">       Login</a></li>
                     <li class="nav-item"><a class="nav-item nav-link" href="{% url 'user-register' %}">Register</a></li>
