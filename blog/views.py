@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from django.contrib.admin.views.decorators import staff_member_required
+from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
@@ -34,8 +35,8 @@ class PostListView(ListView):
     model = Post
     template_name='html/home.html'
     paginate_by = 10
-    context_object_name = 'posts'
-    queryset = Post.objects.filter(published=True,featured=True)
+    context_object_name = 'blog_posts'
+    queryset = Post.objects.filter(published=True,featured=False)
 
     def post(self,request):
         Post.object.create()
@@ -45,6 +46,11 @@ class PostDetailView(DetailView):
     model = Post
     template_name='html/post.html'
     context_object_name = 'blogpost'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["logged_in_user"] = self.request.user
+        return context
     
 
 # Create a new post
@@ -57,7 +63,6 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Post
     template_name='html/form/update_post.html'
@@ -73,15 +78,15 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
 class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Post
-
+    template_name='html/form/delete_post.html'
+    success_url = reverse_lazy('my-profile')
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
-        return 
-        (self.request.user == self.get_object().author)\
-        or\
-        self.request.user.is_superuser
+        return self.request.user == self.get_object().author
 
 
 @staff_member_required
-def set_post_published(request):
-    pass
+def set_post_published_status(request):
+    if request.metod == 'POST':
+        pass
+    
