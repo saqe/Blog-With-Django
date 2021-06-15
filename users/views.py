@@ -39,7 +39,7 @@ def my_profile(request):
     blog_posts = Post.objects.filter(author=request.user.id)
     return render(
         request,
-        'user/my_profile.html',
+        'users/my_profile.html',
         {
             'user':request.user,
             'blog_posts':blog_posts,

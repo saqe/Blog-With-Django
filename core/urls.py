@@ -33,7 +33,7 @@ urlpatterns = [
     
     path(''  , include('blog.urls'),name='blog'),
 
-    path('about/'    , TemplateView.as_view(template_name="html/about.html"), name='blog-about'),
+    path('about/'    , TemplateView.as_view(template_name="core/about.html"), name='blog-about'),
 
     path('register/' , RegisterationView , name='user-register'),
     path('login/'    , LoginView.as_view(template_name  = 'users/login.html',redirect_authenticated_user=True), name='login'),

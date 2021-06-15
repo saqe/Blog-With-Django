@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% include "html/widget/html_base_head.html" %}
+  {% include "core/widget/html_base_head.html" %}
   <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
-    {% include "html/widget/header.html" %}
+    {% include "core/widget/header.html" %}
 
     <!-- Blog main -->
     <main>
       <div class="container">
         <!-- Django Flash Message -->
-        {% include "html/widget/flash_message.html" %}
+        {% include "core/widget/flash_message.html" %}
 
         {% block container %} 
         {% endblock container %}
       </div>
     </main>
-    {% include "html/widget/footer.html" %}    
+    {% include "core/widget/footer.html" %}    
   </body>
 </html>
