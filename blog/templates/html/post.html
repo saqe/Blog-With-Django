@@ -9,12 +9,12 @@
   {% if blogpost.author.id == logged_in_user.id%}
       <form action="{% url 'delete-blog-post' pk=blogpost.pk %}" method="POST">
         {% csrf_token %}
-        <div class='text-center'>
+        <div class='text-center mb-4'>
           <a role="button" class='btn btn-primary'href="{% url 'update-blog-post' blogpost.id %}"><i class="bi bi-pencil-square"></i> Edit Post</a>
 
           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal"><i class="bi bi-trash"></i> Delete</button>
 
-          {% include "html/modal/delete-confirmation.html" %}
+          {% include "core/modal/delete-confirmation.html" %}
 
           {% comment %} <button type="submit" class='btn btn-danger'> <i class="bi bi-trash"></i> Delete</button> {% endcomment %}
         </div>
