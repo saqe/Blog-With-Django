@@ -50,9 +50,10 @@ def my_profile(request):
 class PublicProfileDetailView(DetailView):
     model = User
     template_name = 'users/view_public_profile.html'
+    slug_url_kwarg = 'username'
+    slug_field='username'
 
     def dispatch(self, request, *args, **kwargs):
-        print(request.user.id , self.request.user.id)
         if request.user.id == self.request.user.id:
             return redirect('my-profile')            
         return super().dispatch(request, *args, **kwargs)

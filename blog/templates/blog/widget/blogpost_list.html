@@ -6,7 +6,7 @@
         </a>
         <em class="post-meta text-muted">
             Posted by
-            <a href="{% url 'view-profile' post.author.id%}">{{post.author}}</a>
+            <a href="{% url 'view-profile' post.author.username%}">{{post.author}}</a>
             on {{post.posted_datetime.date}}
         </em>
     </div>
