@@ -1,6 +1,6 @@
 {% for post in blog_posts %}
     <div class="post-preview">
-        <a href="{% url 'view-blog-post' post.id%}" class='text-decoration-none text-dark'>
+        <a href="{% url 'view-blog-post' post.slug%}" class='text-decoration-none text-dark'>
             <h2 class="post-title fst-italic">{{post.title}}</h2>
             <p class="lead">{{post.content |truncatechars:70}}</p>
         </a>
