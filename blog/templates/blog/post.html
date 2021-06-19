@@ -3,7 +3,7 @@
 {% block container %} 
 <div class="row gx-4 gx-lg-5 justify-content-center">
   <div class='col-md-10 col-lg-8 col-xl-7 mt-4 mb-4'>  
-    {% include "html/widget/detailed_blog_post.html" %}
+    {% include "blog/widget/detailed_blog_post.html" %}
   </div>
 
   {% if blogpost.author.id == logged_in_user.id%}

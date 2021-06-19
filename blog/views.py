@@ -33,7 +33,7 @@ from .models import Post
 
 class PostListView(ListView):
     model = Post
-    template_name='html/home.html'
+    template_name='blog/home.html'
     paginate_by = 10
     context_object_name = 'blog_posts'
     queryset = Post.objects.filter(published=True,featured=False)
@@ -44,7 +44,7 @@ class PostListView(ListView):
 # View post in detail
 class PostDetailView(DetailView):
     model = Post
-    template_name='html/post.html'
+    template_name='blog/post.html'
     context_object_name = 'blogpost'
     
     def get_context_data(self, **kwargs):
@@ -56,7 +56,7 @@ class PostDetailView(DetailView):
 # Create a new post
 class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
-    template_name='html/form/create_post.html'
+    template_name='blog/form/create_post.html'
     
     fields = ['title','content','tags']
 
@@ -65,7 +65,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Post
-    template_name='html/form/update_post.html'
+    template_name='blog/form/update_post.html'
     fields = ['title','content','tags']
 
     def form_valid(self, form):
@@ -78,7 +78,7 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
 
 class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Post
-    template_name='html/form/delete_post.html'
+    template_name='blog/form/delete_post.html'
     success_url = reverse_lazy('my-profile')
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
