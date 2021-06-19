@@ -8,7 +8,9 @@ from .views import BlogViewSet
 router = routers.DefaultRouter()
 
 # Registered a route for posts in API.
-router.register('posts', BlogViewSet)
+router.register('articles', BlogViewSet)
+
+# router.register('profile', BlogViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

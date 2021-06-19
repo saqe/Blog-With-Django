@@ -50,21 +50,24 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     #[Installed Apps]
+    
     # Crispy-Forms for auto-formating html-form
     'crispy_forms',
+    
     # DRF
-    # 'rest_framework',
+    'rest_framework',
+    
     # Django-storages
     'storages',
+    
     # PhoneNumberFeild for django model
     'phonenumber_field',
 
     # My Apps
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
-    # User profile settings app.
     'settings.apps.SettingsConfig',
-    # 'api',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
