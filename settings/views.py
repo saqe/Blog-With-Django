@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 from users.models import Profile
 from .forms import (
@@ -38,9 +42,11 @@ def update_profile(request):
         {
             'user_form' : user_form,
             'profile_form' : profile_form,
+            'basic_active':True
         }
     )
 
+@login_required
 def update_profile_image(request):
     if request.method == 'POST':
         image_form    = ProfileImageForm(
@@ -57,17 +63,30 @@ def update_profile_image(request):
     return render( 
         request, 
         'settings/update_picture.html',
-        {'object' : image_form,}
+        {
+            'profile_image_form' : image_form,
+            'picture_active':True,
+        }
     )
 
-class UpdateProfileImageView(LoginRequiredMixin,UpdateView):
-    model = Profile
-    template_name='settings/update_picture.html'
+@login_required
+def update_profile_password(request):
+    if request.method == 'POST':
+        password_form    = PasswordChangeForm(request.user,request.POST)
+        # If the data we are getting, both forms are valid, only then save the data of the form
+        if password_form.is_valid():
+            user = password_form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request,f"Dear {request.user.first_name}, your password have been successfully updated!")
+            return redirect('my-profile')
+    else:
+        password_form    = PasswordChangeForm(request.user)
 
-    fields = ('profile_image')
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):
-        return self.request.user.is_staff
+    return render( 
+        request, 
+        'settings/update_password.html',
+        {
+            'password_form' : password_form,
+            'password_active' : True
+        }
+    )
