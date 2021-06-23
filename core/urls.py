@@ -42,6 +42,7 @@ urlpatterns = [
 
     # User profile setting
     path('settings/' , include('settings.urls')),
+    path('manager/' , include('manager_dashboard.urls')),
 
     path('profile/'  , include('users.urls'), name='profile'),
 ] 

@@ -21,7 +21,7 @@
 
                     {% comment %}Only Admin can see this{% endcomment %}
                     {% if user.is_staff  %}
-                        <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'blog-home' %}">
+                        <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'manager-dashboard' %}">
                             <i class="bi bi-person-lines-fill"></i>
                             Admin
                         </a> </li>
