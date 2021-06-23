@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'settings.apps.SettingsConfig',
+    'admin_dashboard.apps.AdminDashboardConfig',
     'api.apps.ApiConfig',
 ]
 
