@@ -6,5 +6,5 @@ urlpatterns=[
     path('', views.update_profile, name='update-profile'),
     path('update_image/', views.update_profile_image, name='update-profile-image'),
     path('change_password/', views.update_profile_password, name='update-profile-password'),
-    # path('password/', views.PublicProfileDetailView.as_view(), name='view-profile'),
+    path('change_email/', views.update_user_email, name='update-email'),
 ]

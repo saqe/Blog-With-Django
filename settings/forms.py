@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
+# from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import ugettext as _
 
 # Django Model Custom Fields
@@ -33,3 +34,8 @@ class ProfileNameForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name')
+
+class UserEmailForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']

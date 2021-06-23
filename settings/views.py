@@ -10,7 +10,8 @@ from users.models import Profile
 from .forms import (
     ProfileNameForm,
     ProfileBasicInformationForm,
-    ProfileImageForm)
+    ProfileImageForm,
+    UserEmailForm)
 
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
@@ -55,7 +56,9 @@ def update_profile_image(request):
         # If the data we are getting, both forms are valid, only then save the data of the form
         if image_form.is_valid():
             image_form.save()
-            messages.success(request,f"Dear {request.user.first_name}, your profile image have been successfully updated!")
+            
+            messages.success(request,
+                f"Dear {request.user.first_name}, your profile image have been successfully updated!")
             return redirect('my-profile')
     else:
         image_form    = ProfileImageForm(instance=request.user)
@@ -88,5 +91,28 @@ def update_profile_password(request):
         {
             'password_form' : password_form,
             'password_active' : True
+        }
+    )
+
+
+@login_required
+def update_user_email(request):
+    if request.method == 'POST':
+        email_form    = UserEmailForm(
+            request.POST, instance=request.user)
+        # If the data we are getting, both forms are valid, only then save the data of the form
+        if email_form.is_valid():
+            user = email_form.save()
+            messages.success(request,f"Dear {request.user.first_name}, your email have been successfully updated!")
+            return redirect('my-profile')
+    else:
+        email_form    = UserEmailForm(instance=request.user)
+
+    return render( 
+        request, 
+        'settings/update_email.html',
+        {
+            'email_form' : email_form,
+            'email_active' : True
         }
     )
