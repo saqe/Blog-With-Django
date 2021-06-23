@@ -50,16 +50,12 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     #[Installed Apps]
-    
     # Crispy-Forms for auto-formating html-form
     'crispy_forms',
-    
     # DRF
     'rest_framework',
-    
     # Django-storages
     'storages',
-    
     # PhoneNumberFeild for django model
     'phonenumber_field',
 
@@ -100,6 +96,19 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    # DRF default Paginations
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
