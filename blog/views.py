@@ -16,30 +16,12 @@ from django.views.generic import (
 
 from .models import Post
 
-# # JUST Alternative way
-# def home_view(request):
-#     posts = Post\
-#         .objects\
-#         .filter(published=True)\
-#         .order_by('posted_datetime')[:5]
-
-#     return render(
-#         request, 
-#         'html/home.html',
-#         context={
-#             'posts':posts,
-#             'title':'HomePage'
-#         })
-
 class PostListView(ListView):
     model = Post
     template_name='blog/home.html'
     paginate_by = 10
     context_object_name = 'blog_posts'
-    queryset = Post.objects.filter(published=True,featured=False)
-
-    def post(self,request):
-        Post.object.create()
+    queryset = Post.objects.filter(published=True,featured=True)
 
 # View post in detail
 class PostDetailView(DetailView):
@@ -84,10 +66,3 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
         return self.request.user == self.get_object().author
-
-
-@staff_member_required
-def set_post_published_status(request):
-    if request.metod == 'POST':
-        pass
-    

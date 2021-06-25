@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block container %}
+
+<div class="d-flex flex-grow-1">
+    {% include "manager_dashboard/sidebar/left.html" %}
+    <div id="content" class="d-flex flex-column flex-grow-1 justify-content-start">
+        <div class="container-fluid">
+            <h1 class="display-5 text-center">Posts</h1>
+            <div class="panel panel-default container">
+            <table class="table table-hover rounded">
+                <thead class='table-light'>
+                    <tr>
+                        <th scope="col" colspan="2" class='ml-4'> Author </th>
+                        <th scope="col"> Title </th>    
+                        <th scope="col"> Description </th>
+                        <th scope="col"> Tags </th>
+                        <th scope="col"> Status </th>
+                        <th scope="col"> Featured </th>
+                        <th scope="col"> Action </th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">    
+                    {% for article in object_list %}
+                        <tr>
+                            <td width="50"><img height="50" src="{{article.author.profile.profile_image.url}}" alt="" class="rounded-circle img-rounded mx-auto d-block"></td>
+                            <td>
+                                <div>{{article.author.get_full_name|default_if_none:'N/A'}}</div>
+                            </td>
+
+                            <td><a href="{{article.get_absolute_url}}" class="text-decoration-none text-dark">{{article.title}}</a></td>
+                            <td>{{article.content|truncatechars:30}}</td>
+                            <td>
+                                {% for tag in article.tags.all %}
+                                    <span class="badge rounded-pill alert-primary text-dark">
+                                        {{tag}}
+                                    </span>
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if article.published %} 
+                                    <span class="badge rounded-pill alert-success text-success"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Post is published">
+                                        Published
+                                    </span>
+                                {% else %}
+                                    <span class="badge rounded-pill alert-dark text-secondary"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Post isn't approved yet">
+                                        Pending
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if article.featured %} 
+                                    <span class="badge rounded-pill bg-warning text-dark text-center" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Featured">
+                                        <i class="bi bi-trophy-fill"> </i>
+                                    </span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{article.get_absolute_url}}">
+                                                <i class="bi bi-link"></i>
+                                                View
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                {% if article.featured %}
+                                                    <i class="bi bi-file-x"></i>
+                                                    Remove Featured
+                                                {% else %}
+                                                    <i class="bi bi-trophy"></i>
+                                                    Make Featured
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                {% if article.published %}
+                                                    <i class="bi bi-folder-minus"> </i>
+                                                    UnPublish
+                                                {% else %}
+                                                    <i class="bi bi-file-arrow-up-fill"> </i>
+                                                    Publish
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="bi bi-pencil-square"></i>
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="#">
+                                                <i class="bi bi-trash-fill"> </i>
+                                                Delete Article
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+{% endblock container %}
