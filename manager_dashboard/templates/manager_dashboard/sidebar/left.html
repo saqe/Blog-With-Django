@@ -1,37 +1,86 @@
-<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4 ps-4">Admin Area</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li><a href="{% url 'update-profile' %}" class="nav-link text-white {% if basic_active  %}active{% endif %}" aria-current="page">
-            <i class="bi bi-person-lines-fill"></i>
-            Basic Information
-        </a></li>
-        <li><a href="{% url 'update-profile-image' %}" class="nav-link text-white  {% if picture_active  %}active{% endif %}">
-            <i class="bi bi-person-badge"></i>
-            Members List
-        </a></li>
-        <li><a href="{% url 'update-profile-password' %}" class="nav-link text-white  {% if password_active  %}active{% endif %}">
-            <i class="bi bi-key"></i>
-            asdl
-        </a></li>
-        <li><a href="{% url 'update-email' %}" class="nav-link text-white   {% if email_active  %}active{% endif %}">
-            <i class="bi bi-envelope-fill"></i>
-            Change Email
-        </a></li>        
-    </ul>
-    {% comment %} <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <strong>mdo</strong>
+<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+  <a class="fs-4 ps-4 text-bg-dark text-dark text-decoration-none" href="{% url 'admin-area' %}">
+    <i class="bi bi-shield-lock-fill"></i>
+    Admin Area
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li>
+      <a class="dropdown-item fs-5 nav-link btn btn-toggle rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+        <i class="bi bi-stack text-primary">&nbsp;</i>
+        Posts
       </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div> {% endcomment %}
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav list-unstyled small ps-3">
+          <li>
+            <a href="{% url 'articles' %}" class="dropdown-item rounded">
+              <i class="bi bi-stack text-primary"> </i>
+              All Posts
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'drafted-articles' %}" class="dropdown-item rounded">
+              <i class="bi bi-clock-history text-primary"> </i>
+              Pending Post 
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'featured-articles' %}" class="dropdown-item rounded">
+              <i class="bi bi-trophy-fill text-warning"></i>
+              Featured
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'published-articles' %}" class="dropdown-item rounded">
+              <i class="bi bi-clipboard-check text-success"></i>
+              Published
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li>
+    <a href="{% url 'members-list' %}" class="dropdown-item fs-5 nav-link text-dark  {% if picture_active  %}active{% endif %}">
+        <i class="bi bi-people-fill text-primary"> </i>
+        Members List
+    </a>
+    </li>
+    
+    {% comment %} <li>
+    <a href="#" class="dropdown-item fs-5 text-dark nav-link {% if email_active  %}active{% endif %}">
+        <i class="bi bi-envelope-fill text-primary"></i>
+        Change Email
+    </a>
+    </li> {% endcomment %}
+  </ul>
 </div>
+
+<style>
+
+.btn-toggle {
+  display: inline-flex;
+}
+
+.btn-toggle::after {
+  width: 1.25em;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+  color: rgba(0, 0, 0, .85);
+}
+.btn-toggle[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+{% comment %} .btn-toggle-nav a {
+  display: inline-flex;
+  padding: .1875rem .5rem;
+  margin-top: .125rem;
+  margin-left: 1.25rem;
+  text-decoration: none;
+} {% endcomment %}
+</style>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include "core/widget/html_base_head.html" %}
-  <body class="d-flex flex-column min-vh-100">
+  <body class="d-flex flex-column flex-grow-1 min-vh-100">
     <!-- Header -->
     {% include "core/widget/header.html" %}
 
     <!-- Blog main -->
-    <main>
-      <div class="container">
+    <main class="d-flex flex-grow-1">
+      <div class="container d-flex flex-column">
+      
         <!-- Django Flash Message -->
         {% include "core/widget/flash_message.html" %}
 
         {% block container %} 
+
         {% endblock container %}
       </div>
     </main>
