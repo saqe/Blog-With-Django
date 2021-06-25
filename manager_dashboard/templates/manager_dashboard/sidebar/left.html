@@ -1,0 +1,37 @@
+<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-4 ps-4">Admin Area</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li><a href="{% url 'update-profile' %}" class="nav-link text-white {% if basic_active  %}active{% endif %}" aria-current="page">
+            <i class="bi bi-person-lines-fill"></i>
+            Basic Information
+        </a></li>
+        <li><a href="{% url 'update-profile-image' %}" class="nav-link text-white  {% if picture_active  %}active{% endif %}">
+            <i class="bi bi-person-badge"></i>
+            Members List
+        </a></li>
+        <li><a href="{% url 'update-profile-password' %}" class="nav-link text-white  {% if password_active  %}active{% endif %}">
+            <i class="bi bi-key"></i>
+            asdl
+        </a></li>
+        <li><a href="{% url 'update-email' %}" class="nav-link text-white   {% if email_active  %}active{% endif %}">
+            <i class="bi bi-envelope-fill"></i>
+            Change Email
+        </a></li>        
+    </ul>
+    {% comment %} <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <strong>mdo</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div> {% endcomment %}
+</div>
