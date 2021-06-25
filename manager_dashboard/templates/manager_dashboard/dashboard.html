@@ -1,1 +1,75 @@
-<h1>Admin Dashboard</h1>
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block container %}
+
+<div class="d-flex flex-grow-1">
+    {% include "manager_dashboard/sidebar/left.html" %}
+
+    <div id="content" class="d-flex flex-column flex-grow-1 justify-content-start">
+        <div class="container-fluid">
+            
+            <h1 class="display-5 text-center">Dashboard</h1>
+            <div class="row">
+                <!--  -->
+                {% with title="Total Members" value=count_members color="primary" bi_icon="bi bi-people"%}
+                    {% include 'core/widget/card/dashboard-card.html' %}
+                {% endwith %}
+
+                <!--  -->
+                {% with title="Published Posts" value=count_published_posts color="success" bi_icon="bi bi-stack" %}
+                    {% include 'core/widget/card/dashboard-card.html' %}
+                {% endwith %}
+            
+                <!--  -->
+                {% with title="Pending Posts" value=count_pending_posts color="info" bi_icon="bi bi-clock-history" %}
+                    {% include 'core/widget/card/dashboard-card.html' %}
+                {% endwith %}
+                
+                {% with title="Featured Posts" value=count_featured_posts color="warning" bi_icon="bi bi-trophy-fill" %}
+                    {% include 'core/widget/card/dashboard-card.html' %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    
+</div>  
+
+<style>
+.border-right-primary{ border-right: .25rem solid #4e73df!important;}
+.border-left-primary{ border-left: .25rem solid #4e73df!important;}
+.border-top-primary{ border-top: .25rem solid #4e73df!important;}
+.border-bottom-primary{ border-bottom: .25rem solid #4e73df!important;}
+
+.border-right-secondary{ border-right: .25rem solid #858796!important;}
+.border-left-secondary{ border-left: .25rem solid #858796!important;}
+.border-top-secondary{ border-top: .25rem solid #858796!important;}
+.border-bottom-secondary{ border-bottom: .25rem solid #858796!important;}
+
+.border-right-success{ border-right: .25rem solid #1cc88a!important;}
+.border-left-success{ border-left: .25rem solid #1cc88a!important;}
+.border-top-success{ border-top: .25rem solid #1cc88a!important;}
+.border-bottom-success{ border-bottom: .25rem solid #1cc88a!important;}
+
+.border-right-warning{ border-right: .25rem solid #f6c23e!important;}
+.border-left-warning{ border-left: .25rem solid #f6c23e!important;}
+.border-top-warning{ border-top: .25rem solid #f6c23e!important;}
+.border-bottom-warning{ border-bottom: .25rem solid #f6c23e!important;}
+
+.border-right-danger{ border-right: .25rem solid #e74a3b!important;}
+.border-left-danger{ border-left: .25rem solid #e74a3b!important;}
+.border-top-danger{ border-top: .25rem solid #e74a3b!important;}
+.border-bottom-danger{ border-bottom: .25rem solid #e74a3b!important;}
+
+.border-right-info{ border-right: .25rem solid #36b9cc!important;}
+.border-left-info{ border-left: .25rem solid #36b9cc!important;}
+.border-top-info{ border-top: .25rem solid #36b9cc!important;}
+.border-bottom-info{ border-bottom: .25rem solid #36b9cc!important;}
+
+.border-right-dark{ border-right: .25rem solid #5a5c69!important;}
+.border-left-dark{ border-left: .25rem solid #5a5c69!important;}
+.border-top-dark{ border-top: .25rem solid #5a5c69!important;}
+.border-bottom-dark{ border-bottom: .25rem solid #5a5c69!important;}
+</style>
+
+{% endblock container %}
+
