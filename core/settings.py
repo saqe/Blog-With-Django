@@ -75,7 +75,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    
+    # GZIP Compression
+    'django.middleware.gzip.GZipMiddleware',
     # Simplified static file serving.
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
