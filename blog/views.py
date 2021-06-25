@@ -57,7 +57,7 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
-        return self.request.user == self.get_object().author
+        return (self.request.user == self.get_object().author) or self.request.user.is_staff
 
 class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Post
@@ -65,4 +65,4 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     success_url = reverse_lazy('my-profile')
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
-        return self.request.user == self.get_object().author
+        return (self.request.user == self.get_object().author) or self.request.user.is_staff
