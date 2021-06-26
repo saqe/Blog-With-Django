@@ -48,10 +48,9 @@
                                             <i class="bi bi-three-dots-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">{% if user.is_active %}Suspend User{% else %}Activate User{% endif %}</a></li>
-                                            <li>
-                                                {% include "manager_dashboard/actions/staff-role.html" %}
-                                            </li>
+                                            <li>{% include "manager_dashboard/actions/member-access.html" %}</li>
+                                            
+                                            <li>{% include "manager_dashboard/actions/staff-role.html" %}</li>
                                             
                                             <li><hr class="dropdown-divider"></li>
                                             

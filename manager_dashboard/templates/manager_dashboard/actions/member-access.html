@@ -1,0 +1,14 @@
+<form action="{% url 'member-access' pk=user.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="is_active" value="{{user.is_active|yesno:"False,True"}}">
+
+    <button class="dropdown-item" type="submit">
+        {% if user.is_active %}
+            {% if not user.is_superuser %}
+                Suspend Member
+            {% endif %}        
+        {% else %}
+            Activate Member
+        {% endif %}
+    </button>
+</form>

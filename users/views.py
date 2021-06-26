@@ -75,10 +75,15 @@ class UserDeleteView(PermissionRequiredMixin,DeleteView):
     model = User
     success_url = reverse_lazy('members-list')
     permission_required = 'is_staff'
-    
+
 class UserStaffStatus(PermissionRequiredMixin,UpdateView):
     model = User
     success_url = reverse_lazy('members-list')
     permission_required = 'is_staff'
     fields = ['is_staff']
     
+class UserAccessStatus(PermissionRequiredMixin,UpdateView):
+    model = User
+    success_url = reverse_lazy('members-list')
+    permission_required = 'is_active'
+    fields = ['is_active']
