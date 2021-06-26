@@ -10,7 +10,7 @@ class PostTag(models.Model):
         return self.tag
     
 class Post(models.Model):
-    slug = models.SlugField(max_length=255,unique=True)
+    slug = models.SlugField(max_length=255,unique=True,db_index=True,)
     title = models.CharField(max_length = 255)
     posted_datetime = models.DateTimeField(auto_now_add=True)
     updated_datetime = models.DateTimeField(auto_now=True)
