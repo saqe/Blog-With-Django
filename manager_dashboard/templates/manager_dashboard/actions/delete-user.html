@@ -1,0 +1,10 @@
+<form action="{% url 'delete-member' user.pk %}" method="POST">
+    {% csrf_token %}
+    <button 
+        type="submit" 
+        class="dropdown-item bg-danger text-white" 
+        onclick="return confirm('Are you really sure you want to delete the user with Name {{user.get_full_name}}?\nConsider disabling the member, if you aren\'t sure.\nThis action can\'t be undone!')">
+        <i class="bi bi-trash"></i>
+        Delete Member
+    </button>
+</form>

@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib import messages
-
-from django.views.generic import DetailView
+from django.views.generic import (DetailView,DeleteView)
 from django.contrib.auth.decorators import login_required
-from users.forms import UserRegisterForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
+from users.forms import UserRegisterForm
 from .models import User
 from blog.models import Post
 
@@ -62,3 +63,13 @@ class PublicProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["blog_posts"] = Post.objects.filter(author=self.request.user.id)
         return context
+
+
+class UserDeleteView(PermissionRequiredMixin,DeleteView):
+    model = User
+    success_url = reverse_lazy('members-list')
+    permission_required = 'is_staff',
+
+    # # Verify if the user trying to do that is owner of that post
+    # def test_func(self):
+    #     return self.request.user.is_staff

@@ -49,9 +49,12 @@
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#">{% if user.is_active %}Suspend User{% else %}Activate User{% endif %}</a></li>
                                             <li><a class="dropdown-item" href="#">Make Admin</a></li>
-                                            <li><a class="dropdown-item" href="#"></a></li>
                                             <li><hr class="dropdown-divider"></li>
-                                            <li><a class="dropdown-item" href="#">Delete Account</a></li>
+                                            <li>
+                                                {% with user as user %}
+                                                    {% include "manager_dashboard/actions/delete-user.html" %}
+                                                {% endwith %}                                   
+                                            </li>
                                         </ul>
                                     </div>
                                 </td>
