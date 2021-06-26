@@ -16,7 +16,6 @@ class DashboardView(PermissionRequiredMixin,TemplateView):
         context["count_featured_posts"] = Post.objects.filter(featured=True,published=True).count()
         context["count_pending_posts"] = Post.objects.filter(published=False).count()
         context["count_members"] = User.objects.count()
-        print(context)
         return context
     
 class MembersList(PermissionRequiredMixin,ListView):
