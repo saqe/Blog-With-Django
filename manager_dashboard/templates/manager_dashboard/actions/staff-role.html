@@ -1,0 +1,14 @@
+<form action="{% url 'staff-update' pk=user.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="is_staff" value="{{user.is_staff|yesno:"False,True"}}">
+
+    <button class="dropdown-item" type="submit">
+        {% if user.is_staff %}
+            {% if not user.is_superuser %}
+                Remove Manager
+            {% endif %}        
+        {% else %}
+            Make Manager
+        {% endif %}
+    </button>
+</form>

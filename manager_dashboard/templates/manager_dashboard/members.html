@@ -43,18 +43,19 @@
                                 </td>
                                 <td>
                                     <div class="dropdown">
+                                    
                                         <button class="btn btn-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="bi bi-three-dots-vertical"></i>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#">{% if user.is_active %}Suspend User{% else %}Activate User{% endif %}</a></li>
-                                            <li><a class="dropdown-item" href="#">Make Admin</a></li>
-                                            <li><hr class="dropdown-divider"></li>
                                             <li>
-                                                {% with user as user %}
-                                                    {% include "manager_dashboard/actions/delete-user.html" %}
-                                                {% endwith %}                                   
+                                                {% include "manager_dashboard/actions/staff-role.html" %}
                                             </li>
+                                            
+                                            <li><hr class="dropdown-divider"></li>
+                                            
+                                            <li> {% include "manager_dashboard/actions/delete-user.html" %} </li>
                                         </ul>
                                     </div>
                                 </td>
