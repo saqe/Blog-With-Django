@@ -85,5 +85,5 @@ class UserStaffStatus(PermissionRequiredMixin,UpdateView):
 class UserAccessStatus(PermissionRequiredMixin,UpdateView):
     model = User
     success_url = reverse_lazy('members-list')
-    permission_required = 'is_active'
+    permission_required = 'is_staff'
     fields = ['is_active']

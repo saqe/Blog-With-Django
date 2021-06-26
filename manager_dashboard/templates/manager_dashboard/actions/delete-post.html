@@ -1,5 +1,5 @@
 <form 
-    action="{% url 'delete-blog-post' slug %}" 
+    action="{% url 'delete-blog-post' article.slug %}" 
     method="POST"
     onsubmit="return confirm ('Are you want to delete this post?')">
 

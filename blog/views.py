@@ -4,6 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import reverse_lazy
 
 from django.contrib.auth.mixins import (
+    PermissionRequiredMixin,
     LoginRequiredMixin,
     UserPassesTestMixin)
 
@@ -66,3 +67,16 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     # Verify if the user trying to do that is owner of that post
     def test_func(self):
         return (self.request.user == self.get_object().author) or self.request.user.is_staff
+
+
+class PostPublishedAdminUpdate(PermissionRequiredMixin,UpdateView):
+    model = Post
+    success_url = reverse_lazy('articles')
+    permission_required = 'is_staff'
+    fields = ['published']
+
+class PostFeaturedAdminUpdate(PermissionRequiredMixin,UpdateView):
+    model = Post
+    success_url = reverse_lazy('articles')
+    permission_required = 'is_staff'
+    fields = ['featured']

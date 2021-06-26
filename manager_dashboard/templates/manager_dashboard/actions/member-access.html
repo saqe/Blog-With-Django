@@ -5,9 +5,11 @@
     <button class="dropdown-item" type="submit">
         {% if user.is_active %}
             {% if not user.is_superuser %}
+                <i class="bi bi-person-x-fill"></i>
                 Suspend Member
-            {% endif %}        
+            {% endif %}
         {% else %}
+            <i class="bi bi-person-check-fill"></i>
             Activate Member
         {% endif %}
     </button>

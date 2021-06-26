@@ -1,0 +1,14 @@
+<form action="{% url 'feature-a-post' slug=article.slug %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="featured" value="{{article.featured|yesno:"False,True"}}">
+
+    <button class="dropdown-item" type="submit">
+        {% if article.featured %}
+            <i class="bi bi-folder-minus"> </i>
+            Remove Featured
+        {% else %}
+            <i class="bi bi-trophy"></i>
+            Make Featured
+        {% endif %}
+    </button>
+</form>

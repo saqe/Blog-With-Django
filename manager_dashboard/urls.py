@@ -6,6 +6,10 @@ from users.views import (
     UserAccessStatus,
     UserStaffStatus,)
 
+from blog.views import (
+    PostFeaturedAdminUpdate,
+    PostPublishedAdminUpdate,
+)
 from . import views
 from .views import (
     DashboardView,
@@ -29,6 +33,6 @@ urlpatterns=[
     path('posts/published/', PublishedPostListView.as_view(), name='published-articles'),
     path('posts/draft/',     DraftPostListView.as_view(),     name='drafted-articles'),
     path('posts/featured/',  FeaturedPostListView.as_view(),  name='featured-articles'),
-    # path('users/update_role/', views., name=''),
-    # path('posts/update_status', views., name=''),
+    path('posts/<slug:slug>/feature-post',  PostFeaturedAdminUpdate.as_view(), name='feature-a-post'),
+    path('posts/<slug:slug>/publish-post',  PostPublishedAdminUpdate.as_view(), name='publish-a-post'),
 ]

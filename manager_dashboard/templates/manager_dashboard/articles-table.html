@@ -67,28 +67,9 @@
                                                 View
                                             </a>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                {% if article.featured %}
-                                                    <i class="bi bi-file-x"></i>
-                                                    Remove Featured
-                                                {% else %}
-                                                    <i class="bi bi-trophy"></i>
-                                                    Make Featured
-                                                {% endif %}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                {% if article.published %}
-                                                    <i class="bi bi-folder-minus"> </i>
-                                                    UnPublish
-                                                {% else %}
-                                                    <i class="bi bi-file-arrow-up-fill"> </i>
-                                                    Publish
-                                                {% endif %}
-                                            </a>
-                                        </li>
+                                        <li> {% include "manager_dashboard/actions/feature-a-post.html" %} </li>
+                                        
+                                        <li> {% include "manager_dashboard/actions/publish-a-post.html" %} </li>
                                         
                                         <li>
                                             <a class="dropdown-item" href="{% url 'update-blog-post' article.slug %}">
@@ -99,11 +80,7 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li>
-                                            {% with article.slug as slug %}
-                                                {% include "manager_dashboard/actions/delete-post.html" %}
-                                            {% endwith %}
-                                        </li>
+                                        <li> {% include "manager_dashboard/actions/delete-post.html" %} </li>
                                     </ul>
                                 </div>
                             </td>

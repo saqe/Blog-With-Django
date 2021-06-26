@@ -1,0 +1,14 @@
+<form action="{% url 'publish-a-post' slug=article.slug %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="published" value="{{article.published|yesno:"False,True"}}">
+
+    <button class="dropdown-item" type="submit">
+        {% if article.published %}
+            <i class="bi bi-folder-minus"> </i>
+            UnPublish
+        {% else %}
+            <i class="bi bi-file-arrow-up-fill"> </i>
+            Publish
+        {% endif %}
+    </button>
+</form>
