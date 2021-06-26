@@ -1,4 +1,4 @@
-<form action="{% url 'publish-a-post' slug=article.slug %}" method="POST">
+<form action="{% url 'approve-a-post' slug=article.slug %}" method="POST">
     {% csrf_token %}
     <input type="hidden" name="published" value="{{article.published|yesno:"False,True"}}">
 

@@ -8,7 +8,7 @@ from users.views import (
 
 from blog.views import (
     PostFeaturedAdminUpdate,
-    PostPublishedAdminUpdate,
+    PostApproveAdminUpdate,
 )
 from . import views
 from .views import (
@@ -34,5 +34,5 @@ urlpatterns=[
     path('posts/draft/',     DraftPostListView.as_view(),     name='drafted-articles'),
     path('posts/featured/',  FeaturedPostListView.as_view(),  name='featured-articles'),
     path('posts/<slug:slug>/feature-post',  PostFeaturedAdminUpdate.as_view(), name='feature-a-post'),
-    path('posts/<slug:slug>/publish-post',  PostPublishedAdminUpdate.as_view(), name='publish-a-post'),
+    path('posts/<slug:slug>/approve-post',  PostApproveAdminUpdate.as_view(), name='approve-a-post'),
 ]

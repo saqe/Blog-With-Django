@@ -69,7 +69,7 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         return (self.request.user == self.get_object().author) or self.request.user.is_staff
 
 
-class PostPublishedAdminUpdate(PermissionRequiredMixin,UpdateView):
+class PostApproveAdminUpdate(PermissionRequiredMixin,UpdateView):
     model = Post
     success_url = reverse_lazy('articles')
     permission_required = 'is_staff'

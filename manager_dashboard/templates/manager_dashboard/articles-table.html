@@ -40,7 +40,7 @@
                             <td>
                                 {% if article.published %} 
                                     <span class="badge rounded-pill alert-success text-success"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Post is published">
-                                        Published
+                                        Approved
                                     </span>
                                 {% else %}
                                     <span class="badge rounded-pill alert-dark text-secondary"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Post isn't approved yet">
@@ -69,7 +69,7 @@
                                         </li>
                                         <li> {% include "manager_dashboard/actions/feature-a-post.html" %} </li>
                                         
-                                        <li> {% include "manager_dashboard/actions/publish-a-post.html" %} </li>
+                                        <li> {% include "manager_dashboard/actions/approve-a-post.html" %} </li>
                                         
                                         <li>
                                             <a class="dropdown-item" href="{% url 'update-blog-post' article.slug %}">
