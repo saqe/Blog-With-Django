@@ -100,10 +100,10 @@
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li>
-                                            <a class="dropdown-item text-danger" href="#">
-                                                <i class="bi bi-trash-fill"> </i>
-                                                Delete Article
-                                            </a></li>
+                                            {% with article.slug as slug %}
+                                                {% include "manager_dashboard/actions/delete-post.html" %}
+                                            {% endwith %}
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
@@ -114,7 +114,6 @@
             </div>
         </div>
     </div>
-</div>  
-
+</div>
 
 {% endblock container %}

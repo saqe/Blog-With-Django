@@ -1,0 +1,12 @@
+<form 
+    action="{% url 'delete-blog-post' slug %}" 
+    method="POST"
+    onsubmit="return confirm ('Are you want to delete this post?')">
+
+    {% csrf_token %}
+    
+    <button type="submit" class="text-danger dropdown-item">
+        <i class="bi bi-trash"></i> 
+        Delete
+    </button>
+</form>
