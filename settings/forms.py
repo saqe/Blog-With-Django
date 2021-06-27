@@ -12,13 +12,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from users.models import Profile
 
 class ProfileBasicInformationForm(forms.ModelForm):
-    # Profile Image
-    # profile_image = forms.ImageField(
-    #     label=_('Profile Image'),
-    #     required=False,
-    #     error_messages = {'invalid':_("Image files only")}, 
-    #     widget=forms.FileInput)
-
     country = CountryField()
     class Meta:
         model = Profile
@@ -26,14 +19,14 @@ class ProfileBasicInformationForm(forms.ModelForm):
 
 
 class ProfileImageForm(forms.ModelForm):
-    profile_image = forms.ImageField()
 
+    # Removed that text Currently.
     profile_image = forms.ImageField(
         label=_('Profile Image'),
         required=False,
         error_messages = {'invalid':_("Image files only")}, 
         widget=forms.FileInput)
-        
+
     class Meta:
         model = Profile
         fields = ("profile_image",)
