@@ -1,10 +1,20 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin)
 
+from django.shortcuts import (
+    render, 
+    redirect, 
+    get_object_or_404,)
+
+from django.views.generic import (
+    DetailView,
+    UpdateView,)
 
 from users.models import Profile
 from .forms import (
@@ -13,19 +23,14 @@ from .forms import (
     ProfileImageForm,
     UserEmailForm)
 
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    UserPassesTestMixin)
-
-from django.views.generic import (DetailView,UpdateView,)
-
 @login_required
 def update_profile(request):
     if request.method == 'POST':
         user_form    = ProfileNameForm(
                 request.POST,instance=request.user)
         profile_form = ProfileBasicInformationForm(
-                request.POST, request.FILES, instance=request.user.profile)
+                request.POST, 
+                instance=request.user.profile)
 
         # If the data we are getting, both forms are valid, only then save the data of the form
         if user_form.is_valid() and profile_form.is_valid():
@@ -46,31 +51,20 @@ def update_profile(request):
             'basic_active':True
         }
     )
+class ProfileImageUpdateView(LoginRequiredMixin,SuccessMessageMixin,UpdateView):
+    template_name = 'settings/update_picture.html'
+    success_message = 'Your profile image have been successfully updated!'
+    success_url = reverse_lazy('my-profile')
+    model = Profile
+    form_class = ProfileImageForm
 
-@login_required
-def update_profile_image(request):
-    if request.method == 'POST':
-        image_form    = ProfileImageForm(
-                request.POST,instance=request.user)
+    def get_object(self, queryset=None):
+        return get_object_or_404(Profile, pk=self.request.user.profile.pk)
 
-        # If the data we are getting, both forms are valid, only then save the data of the form
-        if image_form.is_valid():
-            image_form.save()
-            
-            messages.success(request,
-                f"Dear {request.user.first_name}, your profile image have been successfully updated!")
-            return redirect('my-profile')
-    else:
-        image_form    = ProfileImageForm(instance=request.user)
-
-    return render( 
-        request, 
-        'settings/update_picture.html',
-        {
-            'profile_image_form' : image_form,
-            'picture_active':True,
-        }
-    )
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["picture_active"] = True
+        return context
 
 @login_required
 def update_profile_password(request):

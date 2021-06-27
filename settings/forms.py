@@ -26,6 +26,14 @@ class ProfileBasicInformationForm(forms.ModelForm):
 
 
 class ProfileImageForm(forms.ModelForm):
+    profile_image = forms.ImageField()
+
+    profile_image = forms.ImageField(
+        label=_('Profile Image'),
+        required=False,
+        error_messages = {'invalid':_("Image files only")}, 
+        widget=forms.FileInput)
+        
     class Meta:
         model = Profile
         fields = ("profile_image",)
