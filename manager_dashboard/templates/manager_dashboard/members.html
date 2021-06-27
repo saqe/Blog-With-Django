@@ -23,7 +23,13 @@
                     <tbody class="align-middle">    
                         {% for user in object_list %}
                             <tr>
-                                <td width="50"><img height="50" src="{{user.profile.profile_image.url}}" alt="" class="rounded-circle img-rounded mx-auto d-block"></td>
+                                <td>
+                                    <img 
+                                        style="width: 50px;height: 50px;object-fit: cover;"
+                                        src="{{user.profile.profile_image.url}}" 
+                                        class="rounded-circle img-rounded mx-auto d-block"
+                                    >
+                                </td>
                                 <td>
                                     <div>{{user.get_full_name|default_if_none:'N/A'}}</div>
                                     <div class='text-muted'>{{user.email}}</div>
