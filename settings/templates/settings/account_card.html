@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block container %}
+<div class="d-flex flex-grow-1">
+  {% include "settings/sidebar/left.html" %}
+  <div class="align-self-start mx-auto m-4 card bg-light">
+    {% block "account-form" %}
+    {% endblock "account-form" %}
+  </div>
+</div>
+{% endblock container %}

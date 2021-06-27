@@ -22,7 +22,6 @@ from .views import (
 
 
 urlpatterns=[
-    # path('',        views.my_profile, name='my-profile'),
     path('', DashboardView.as_view(), name='admin-area'),
     path('members/', MembersList.as_view(), name='members-list'),
     path('members/<int:pk>/delete', UserDeleteView.as_view(),  name='delete-member'),

@@ -1,22 +1,15 @@
-{% extends 'core/base_without_container.html' %}
+{% extends 'settings/account_card.html' %}
 {% load crispy_forms_tags %}
-{% block main_block %}
-
-<div class="row">
-  {% include "settings/sidebar/left.html" %}
-  <div class="col-sm-5 mx-auto m-4 card bg-light">
-    <h4 class='ms-4 mt-4'>Update Profile Pictures</h4>
-    <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" />
-    <form method="POST" enctype="multipart/form-data" class='m-4 align-self-center'>
-      {% csrf_token %}
-      <fieldset class="form-group">
-        <div class="row mt-2">
-          <div class="form-group col-md-5">{{ profile_image_form | crispy }}</div>
-        </div>
-      </fieldset>
-      <button class="btn mt-4 btn-success container" type="submit">Update</button>
-    </form>
-  </div>
-  {% comment %} </div> {% endcomment %}
-</div>
-{% endblock main_block %}
+{% block "account-form" %}
+<h4 class='display-6 p-4 text-center'>Update Profile Pictures</h4>
+<form method="POST" enctype="multipart/form-data" class='m-4 flex-shrink-0 align-self-center'>
+  {% csrf_token %}
+  <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" />
+  <fieldset class="form-group">
+    <div class="row mt-2">
+      <div class="form-group col-md-5">{{ profile_image_form | crispy }}</div>
+    </div>
+  </fieldset>
+  <button class="btn mt-4 btn-success container" type="submit">Update</button>
+</form>
+{% endblock "account-form" %}

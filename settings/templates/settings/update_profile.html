@@ -1,35 +1,25 @@
-{% extends 'core/base_without_container.html' %}
+{% extends 'settings/account_card.html' %}
 {% load crispy_forms_tags %}
-{% block main_block %}
-
-<div class="row">
-  {% include "settings/sidebar/left.html" %}
-
-  {% comment %} <div class="container"> {% endcomment %}
-  <div class="col-sm-5 mx-auto m-4 card bg-light">
-    <h4 class='ms-4 mt-4 display-5'>Basic Information</h4>
-    {% comment %} <img src="{{user.profile.profile_image.url}}" alt="Profile Image" width="150"  class="rounded-circle mx-auto d-block image-fluid" /> {% endcomment %}
-    <form method="POST" enctype="multipart/form-data" class='m-4 align-self-center'>
-      {% csrf_token %}
-      <fieldset class="form-group">
-        <div class="row mt-4">
-          <div class="form-group col-md-6">{{ user_form.first_name | as_crispy_field }}</div>
-          <div class="form-group col-md-6">{{ user_form.last_name  | as_crispy_field }}</div>
-        </div>
-        <div class="mt-2">{{ profile_form.gender | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.job_role | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.phone_number | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.country | as_crispy_field }}</div>
-        <div class="mt-2">{{ profile_form.address | as_crispy_field }}</div>
-        <div class="row mt-2">
-          <div class="form-group col-md-5">{{ profile_form.city | as_crispy_field }}</div>
-          <div class="form-group col-md-4">{{ profile_form.state | as_crispy_field }}</div>
-          <div class="form-group col-md-3">{{ profile_form.zip_code | as_crispy_field }}</div>
-        </div>
-      </fieldset>
-      <button class="btn mt-4 btn-success container" type="submit">Save</button>
-    </form>
-  </div>
-  {% comment %} </div> {% endcomment %}
-</div>
-{% endblock main_block %}
+{% block "account-form" %}
+<h4 class='display-6 ms-4 mt-4 text-center'>Basic Information</h4>
+<form method="POST" enctype="multipart/form-data" class='m-4 align-self-center'>
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <div class="row mt-4">
+      <div class="form-group col-md-6">{{ user_form.first_name | as_crispy_field }}</div>
+      <div class="form-group col-md-6">{{ user_form.last_name  | as_crispy_field }}</div>
+    </div>
+    <div class="mt-2">{{ profile_form.gender | as_crispy_field }}</div>
+    <div class="mt-2">{{ profile_form.job_role | as_crispy_field }}</div>
+    <div class="mt-2">{{ profile_form.phone_number | as_crispy_field }}</div>
+    <div class="mt-2">{{ profile_form.country | as_crispy_field }}</div>
+    <div class="mt-2">{{ profile_form.address | as_crispy_field }}</div>
+    <div class="row mt-2">
+      <div class="form-group col-md-5">{{ profile_form.city | as_crispy_field }}</div>
+      <div class="form-group col-md-4">{{ profile_form.state | as_crispy_field }}</div>
+      <div class="form-group col-md-3">{{ profile_form.zip_code | as_crispy_field }}</div>
+    </div>
+  </fieldset>
+  <button class="btn mt-4 btn-success container" type="submit">Save</button>
+</form>
+{% endblock "account-form" %}
