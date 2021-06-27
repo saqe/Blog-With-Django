@@ -2,7 +2,13 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex flex-column align-items-center text-center">
-            <img src="{{user.profile.profile_image.url}}" alt="Profile Image" class="rounded-circle img-fluid mx-auto d-block" width="150" />
+            <img 
+                src="{{user.profile.profile_image.url}}"
+                alt="Profile Image" 
+                class="rounded-circle img-thumbnail mx-auto" 
+                style="width:200px;height:200px;object-fit:cover;"
+                />
+                
             <div class="mt-3">
                 <h4>
                     {{user.get_full_name}}

@@ -5,6 +5,8 @@
 <form method="POST">
     {% csrf_token %}
     <fieldset class="form-group"> {{form | crispy}}</fieldset>
-    <div class="d-flex justify-content-center m-3"><button class="btn btn-success col-6" type="submit">Update</button></div>
+    <div class="d-flex justify-content-center m-3">
+        <button class="btn btn-success col-6" type="submit">Update</button>
+    </div>
 </form>
 {% endblock "post-form" %}
