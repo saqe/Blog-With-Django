@@ -23,7 +23,12 @@
                 <tbody class="align-middle">    
                     {% for article in object_list %}
                         <tr>
-                            <td width="50"><img height="50" src="{{article.author.profile.profile_image.url}}" alt="" class="rounded-circle img-rounded mx-auto d-block"></td>
+                            <td>
+                                <img 
+                                    style="width: 50px;height: 50px;object-fit: cover;"
+                                    src="{{article.author.profile.profile_image.url}}" 
+                                    class="rounded-circle img-rounded mx-auto d-block">
+                            </td>
                             <td>
                                 <div>{{article.author.get_full_name|default_if_none:'N/A'}}</div>
                             </td>
