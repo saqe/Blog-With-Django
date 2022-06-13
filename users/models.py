@@ -6,8 +6,6 @@ from django.utils.translation import ugettext as _
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 
-# Create your models here.
-
 
 class Profile(models.Model):
 
