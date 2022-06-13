@@ -10,8 +10,8 @@
             
             <h1 class="display-5 text-center">Dashboard</h1>
             <div class="row">
-                <!--  -->
-                {% with title="Total Members" value=count_members color="primary" bi_icon="bi bi-people"%}
+                <!--  -->           
+                {% with title="Total Members" value=count_members color="primary" bi_icon="bi bi-people" link="/manager/members/"%}
                     {% include 'core/widget/card/dashboard-card.html' %}
                 {% endwith %}
 
