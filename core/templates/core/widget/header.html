@@ -15,20 +15,20 @@
             
             <!-- Navbar Right Side -->
             <ul class="navbar-nav d-flex">
-
                 
                 {% if user.is_authenticated %}
-
-                    {% comment %}Only Admin can see this{% endcomment %}
-                    {% if user.is_staff  %}
-                        <li class="nav-item active"> <a class="nav-item nav-link" href="{% url 'admin-area' %}">
-                            <i class="bi bi-person-lines-fill"></i>
-                            Admin
-                        </a> </li>
+                    {% if user.is_staff %}
+                        <li class="nav-item"> 
+                            <a class="nav-item nav-link" href="{% url 'admin-area' %}">
+                                <i class="bi bi-shield-fill-check text-warning"></i>
+                                Admin
+                            </a> 
+                        </li>
 
                     {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
                             {{user.get_full_name}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
