@@ -16,16 +16,16 @@
                 {% endwith %}
 
                 <!--  -->
-                {% with title="Published Posts" value=count_published_posts color="success" bi_icon="bi bi-stack" %}
+                {% with title="Published Posts" value=count_published_posts color="success" bi_icon="bi bi-stack" link="/manager/posts/published/" %}
                     {% include 'core/widget/card/dashboard-card.html' %}
                 {% endwith %}
             
                 <!--  -->
-                {% with title="Pending Posts" value=count_pending_posts color="info" bi_icon="bi bi-clock-history" %}
+                {% with title="Pending Posts" value=count_pending_posts color="info" bi_icon="bi bi-clock-history" link="/manager/posts/draft/" %}
                     {% include 'core/widget/card/dashboard-card.html' %}
                 {% endwith %}
                 
-                {% with title="Featured Posts" value=count_featured_posts color="warning" bi_icon="bi bi-trophy-fill" %}
+                {% with title="Featured Posts" value=count_featured_posts color="warning" bi_icon="bi bi-trophy-fill" link="/manager/posts/featured/" %}
                     {% include 'core/widget/card/dashboard-card.html' %}
                 {% endwith %}
             </div>
