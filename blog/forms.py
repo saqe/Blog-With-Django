@@ -7,6 +7,7 @@ class FeaturedPostForm(forms.ModelForm):
         model = Post
         fields = ('featured',)
 
+
 class PublishedPostForm(forms.ModelForm):
     class Meta:
         model = Post
